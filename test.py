@@ -16,7 +16,7 @@ class Instabot:
         sleep(2)
         
         search = self.driver.find_element_by_css_selector('input#search')
-        search.send_keys("cybersecurity")
+        search.send_keys("selenium facebook scrapping")
         search.submit()
         sleep(2)
 
@@ -28,13 +28,17 @@ class Instabot:
         data = pd.DataFrame(title)
         #data.dropna(subset=['0'], inplace=True)
         data.columns = ['video titles']
-        data.to_excel('C:\\Users\iori_\Documents\webauto_python\output.xlsx', index_label='#',sheet_name='Youtube names scrapping')
+        data.to_excel('C:\\Users\iori_\Documents\webauto_python\output.xlsx',index=False,sheet_name='Youtube names scrapping')
+        
+        
         new_data = pd.read_excel('C:\\Users\iori_\Documents\webauto_python\output.xlsx')
         new_data.dropna(inplace=True)
-        new_data.set_index('#',inplace=True)
-#print(new_data.to_string(index=False))
+        #new_data.set_index('#',inplace=True)
+#
         print(new_data)
-        new_data.to_excel('C:\\Users\iori_\Documents\webauto_python\output.xlsx', index=False)
+        new_data.to_excel('C:\\Users\iori_\Documents\webauto_python\output.xlsx',sheet_name='Youtube names scrapping')
+#
         os.system(f'start excel.exe ' "C:\\Users\iori_\Documents\webauto_python\output.xlsx")
+        sleep(2)
 
 Instabot()
