@@ -1,11 +1,10 @@
 from selenium import webdriver
 from time import sleep
-from selenium.webdriver.common import keys
+from webdriver_manager.chrome import ChromeDriverManager
 import pandas as pd
 import numpy as np
 import os
-
-PATH = "C:\\Users\iori_\Documents\webauto_python\webautoenv\Scripts\chromedriver.exe"
+driver = webdriver.Chrome(ChromeDriverManager().install())
 
 class Instabot:
     def  __init__(self):
