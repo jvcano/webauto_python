@@ -13,6 +13,6 @@ sleep(2)
 driver.find_element_by_link_text('Flights').click()
 #driver.find_elements_by_css_selector('').click()
 #driver.find_element_by_css_selector('a[data-modal-header-async-url-param*=""]').click()
-driver.get_screenshot_as_file('/home/ccentos/timesheet/webauto_python/screenie.png')
+driver.get_screenshot_as_file('screenie.png')
 
 
