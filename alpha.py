@@ -18,7 +18,7 @@ driver.find_element(By.NAME,"txtLogin").send_keys(config.username)
 driver.find_element(By.NAME,"txtPassword").send_keys(config.password)
 driver.find_element(By.NAME,"btnLogin").click()
 
-#**monday 
+#!monday 
 if calendar.day_name[curr_date.weekday()] == "Monday":
     sleep(2)
     driver.switch_to.frame('aframe')
@@ -80,9 +80,3 @@ elif calendar.day_name[curr_date.weekday()] == "Friday":
     driver.find_element(By.ID,'workflowRoute_ctl07_lb').click()
     sleep(2)
     driver.get_screenshot_as_file(f'{today_date}.png')
-
-
-
-
-
-#//a[normalize-space()='User Reports']
