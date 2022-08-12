@@ -47,4 +47,6 @@ print(f'{calendar.day_name[curr_date.weekday()]}' ".txt")
 print (today_date)
 print (f'{today_date}.txt')
 print(f'{today_date}.png')
+
+
  """
