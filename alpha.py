@@ -5,14 +5,17 @@ from selenium import webdriver
 from time import sleep
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
+from selenium.webdriver.chrome.options import Options
 from webdriver_manager.chrome import ChromeDriverManager
 
 
 curr_date = date.today()
-driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
+option = webdriver.ChromeOptions()
+option.add_argument('headless')
+option.add_argument("window-size=1980x960")
+driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()),options=option)
 driver.implicitly_wait(5)
 driver.get(config.url)
-driver.maximize_window()
 today_date = calendar.day_name[curr_date.weekday()]
 
 driver.find_element(By.NAME,"txtLogin").send_keys(config.username)
@@ -20,7 +23,7 @@ driver.find_element(By.NAME,"txtPassword").send_keys(config.password)
 driver.find_element(By.NAME,"btnLogin").click()
 
 #!monday 
-if calendar.day_name[curr_date.weekday()] == "Monday":
+if today_date == "Monday":
     #sleep(2)
     driver.switch_to.frame('aframe')
     driver.find_element(By.ID,'menuup_buttonBar_item_2').click()
@@ -32,7 +35,7 @@ if calendar.day_name[curr_date.weekday()] == "Monday":
     #sleep(2)
     driver.get_screenshot_as_file(f'{today_date}.png')
 #***** tuesday
-elif calendar.day_name[curr_date.weekday()] == "Tuesday":
+elif today_date == "Tuesday":
     #sleep(2)
     driver.switch_to.frame('aframe')
     driver.find_element(By.ID,'inbox_inboxoutboxGrid_ctl00_ctl12_hypGetDetails').click() #
@@ -44,7 +47,7 @@ elif calendar.day_name[curr_date.weekday()] == "Tuesday":
     #sleep(2)
     driver.get_screenshot_as_file(f'{today_date}.png')
 #***** Wednesday 
-elif calendar.day_name[curr_date.weekday()] == "Wednesday":
+elif today_date == "Wednesday":
     #sleep(2)
     driver.switch_to.frame('aframe')
     driver.find_element(By.ID,'inbox_inboxoutboxGrid_ctl00_ctl12_hypGetDetails').click()
@@ -56,7 +59,7 @@ elif calendar.day_name[curr_date.weekday()] == "Wednesday":
     #sleep(2)
     driver.get_screenshot_as_file(f'{today_date}.png')
 #***** Thursday 
-elif calendar.day_name[curr_date.weekday()] == "Thursday":
+elif today_date == "Thursday":
 
     #sleep(2)
     driver.switch_to.frame('aframe')
@@ -69,7 +72,7 @@ elif calendar.day_name[curr_date.weekday()] == "Thursday":
     #sleep(2)
     driver.get_screenshot_as_file(f'{today_date}.png')
 #!friday 
-elif calendar.day_name[curr_date.weekday()] == "Friday":
+elif today_date == "Friday":
 
     #sleep(2)
     driver.switch_to.frame('aframe')

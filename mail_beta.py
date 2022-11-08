@@ -47,6 +47,17 @@ htmlF = '''
         </body>
     </html>
     '''
+htmlW = f'''
+    <html>
+        <body>
+            <h1>Weekend timesheet report</h1>
+            <p>Hello, bot just check timesheet. Timesheet status is pending</p>
+            <img src='cid:myimageid' width="700">
+        </body>
+    </html>
+    '''
+
+
 ##############################################################
 
 # Define a function to attach files as MIMEApplication to the email
@@ -76,7 +87,7 @@ def attach_file_to_email(email_message, filename, extra_headers=None):
 email_from = config.email_origen
 password = config.gmail
 email_to = config.email_end
-email_cc = config.email_end3
+
 
 # Generate today's date to be included in the email Subject
 date_str = pd.Timestamp.today().strftime('%Y-%m-%d')
@@ -85,7 +96,6 @@ date_str = pd.Timestamp.today().strftime('%Y-%m-%d')
 email_message = MIMEMultipart()
 email_message['From'] = email_from
 email_message['To'] = email_to
-email_message['CC'] = email_cc
 email_message['Subject'] = f'Report email - {date_str}'
 
 # Attach the html doc defined earlier, as a MIMEText html content type to the MIME message
@@ -94,6 +104,8 @@ if calendar.day_name[curr_date.weekday()] == "Monday":
     email_message.attach(MIMEText(htmlM, "html"))
 elif calendar.day_name[curr_date.weekday()] == "Friday":
     email_message.attach(MIMEText(htmlF, "html"))
+elif calendar.day_name[curr_date.weekday()] == "Sunday":
+    email_message.attach(MIMEText(htmlW, "html"))
 else:
     email_message.attach(MIMEText(html, "html"))
 
@@ -112,7 +124,7 @@ email_string = email_message.as_string()
 context = ssl.create_default_context()
 with smtplib.SMTP_SSL("smtp.gmail.com", 465, context=context) as server:
     server.login(email_from, password)
-    server.sendmail(email_from, [email_to,email_cc,config.email_end2], email_string) 
+    server.sendmail(email_from, [email_to], email_string) 
     print('Mail Sent')
 
 
