@@ -29,7 +29,7 @@ if today_date == "Monday":
     driver.find_element(By.ID,'menuup_buttonBar_item_2').click()
     #sleep(2)
     driver.find_element(By.ID,'pnlTimesheet')
-    driver.find_element(By.NAME,'rptTs$ctl01$ti$rptTI$ctl01$teDet$teVal').send_keys('8')
+    driver.find_element(By.NAME,'rptTs$ctl03$ti$rptTI$ctl01$teDet$teVal').send_keys('8')
     #sleep(2)
     driver.find_element(By.ID,'workflowRoute_ctl03_lb').click()
     #sleep(2)

@@ -85,7 +85,7 @@ def attach_file_to_email(email_message, filename, extra_headers=None):
 
 # Set up the email addresses and password. Please replace below with your email address and password
 email_from = config.email_origen
-password = config.gmail
+password = config.gmail_password
 email_to = config.email_end
 
 
