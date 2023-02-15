@@ -7,11 +7,14 @@ print(curr_date)
 print(type(curr_date))
 print(calendar.day_name[curr_date.weekday()])
 check_holidays = '2023-01-01'
+print(type(check_holidays))
 
 today_date = calendar.day_name[curr_date.weekday()]
 print(today_date)
 # Select country
 US_holidays = holidays.US()
+print(US_holidays)
+print(type(US_holidays))
 if  today_date == "Monday":
     if curr_date in US_holidays == True:
         print("today is a monday and a holiday")

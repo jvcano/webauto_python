@@ -1,4 +1,6 @@
 import config
+import calendar
+import holidays
 from datetime import date
 from selenium import webdriver
 from time import sleep, time
@@ -9,6 +11,8 @@ from selenium.webdriver.support.select import Select
 from selenium.webdriver.chrome.options import Options
 
 curr_date = date.today()
+today_date = calendar.day_name[curr_date.weekday()]
+US_holidays = holidays.US()
 option = webdriver.ChromeOptions()
 option.add_argument('headless')
 option.add_argument("window-size=1980x960")
@@ -24,6 +28,109 @@ sleep(1)
 driver.switch_to.frame('aframe')
 sleep(2)
 
+if today_date == "Monday":
+    #sleep(2)
+    if curr_date in US_holidays == True:
+        #print("today is a monday and a holiday")
+        driver.find_element(By.ID,'menuup_buttonBar_item_2').click()
+        #sleep(2)
+        driver.find_element(By.ID,'pnlTimesheet')
+        driver.find_element(By.XPATH,"(//div[@id='rptTs_ctl02_ti_rptTI_ctl00_pcParent_dd_parent'])[1]").click()
+        sleep(2)
+        driver.find_element(By.XPATH,'/html[1]/body[1]/form[1]/div[2]/table[1]/tbody[1]/tr[2]/td[1]/a[1]').click()
+        sleep(2)
+        driver.find_element(By.XPATH,"/html[1]/body[1]/form[1]/table[1]/tbody[1]/tr[1]/td[1]/div[1]/div[2]/table[1]/tbody[1]/tr[1]/td[1]/table[1]/tbody[1]/tr[3]/td[2]/div[1]/div[1]").click()
+        sleep(2)
+        driver.find_element(By.XPATH,'/html[1]/body[1]/form[1]/div[2]/table[1]/tbody[1]/tr[2]/td[1]/a[1]').click()
+        sleep(2)
+        driver.find_element(By.XPATH,"//select[@id='rptTs_ctl02_ti_rptTI_ctl00_ddlPay']//option[@value='10'][normalize-space()='Regular']").click()
+        sleep(2)
+        driver.find_element(By.NAME,'rptTs$ctl02$ti$rptTI$ctl01$teDet$teVal').send_keys('8')
+        sleep(2)
+        driver.find_element(By.ID,'workflowRoute_ctl03_lb').click()
+        #sleep(2)
+        driver.get_screenshot_as_file(f'{today_date}.png')
+    elif Vacation == True:
+        driver.find_element(By.ID,'menuup_buttonBar_item_2').click()
+        driver.find_element(By.ID,'pnlTimesheet')
+        driver.find_element(By.ID,'inbox_inboxoutboxGrid_ctl00_ctl12_hypGetDetails').click() #
+        sleep(2)
+        driver.find_element(By.XPATH,"(//div[@id='rptTs_ctl03_ti_rptTI_ctl00_pcParent_dd_parent'])[1]").click()
+        sleep(2)
+        driver.find_element(By.XPATH,'/html[1]/body[1]/form[1]/div[2]/table[1]/tbody[1]/tr[2]/td[1]/a[1]').click()
+        sleep(2)
+        driver.find_element(By.XPATH,"//div[@id='rptTs_ctl03_ti_rptTI_ctl00_pcChild_dd_parentTxt']").click()
+        sleep(2)
+        driver.find_element(By.XPATH,'//body[1]/form[1]/div[2]/table[1]/tbody[1]/tr[3]/td[1]/a[1]').click()
+        sleep(2)
+        driver.find_element(By.XPATH,"//select[@id='rptTs_ctl03_ti_rptTI_ctl00_ddlPay']//option[@value='10'][normalize-space()='Regular']").click()
+        sleep(2)
+        driver.find_element(By.NAME,'rptTs$ctl03$ti$rptTI$ctl01$teDet$teVal').send_keys('8')
+        sleep(2)
+        driver.find_element(By.ID,'workflowRoute_ctl03_lb').click()
+        #sleep(2)
+    else:
+        #print("is just a monday")
+        driver.switch_to.frame('aframe')
+        driver.find_element(By.ID,'menuup_buttonBar_item_2').click()
+        #sleep(2)
+        driver.find_element(By.ID,'pnlTimesheet')
+        driver.find_element(By.NAME,'rptTs$ctl01$ti$rptTI$ctl01$teDet$teVal').send_keys('8')
+    #sleep(2)
+        driver.find_element(By.ID,'workflowRoute_ctl03_lb').click()
+    #sleep(2)
+        driver.get_screenshot_as_file(f'{today_date}.png')
+#***** tuesday
+elif today_date == "Tuesday":
+    #sleep(2)
+    driver.switch_to.frame('aframe')
+    driver.find_element(By.ID,'inbox_inboxoutboxGrid_ctl00_ctl12_hypGetDetails').click() #
+    #sleep(2)
+    driver.find_element(By.ID,'pnlTimesheet')
+    driver.find_element(By.NAME,'rptTs$ctl01$ti$rptTI$ctl02$teDet$teVal').send_keys('8') #
+    #sleep(2)
+    driver.find_element(By.ID,'workflowRoute_ctl03_lb').click()
+    #sleep(2)
+    driver.get_screenshot_as_file(f'{today_date}.png')
+#***** Wednesday 
+elif today_date == "Wednesday":
+    #sleep(2)
+    driver.switch_to.frame('aframe')
+    driver.find_element(By.ID,'inbox_inboxoutboxGrid_ctl00_ctl12_hypGetDetails').click()
+    #sleep(2)
+    driver.find_element(By.ID,'pnlTimesheet')
+    driver.find_element(By.NAME,'rptTs$ctl01$ti$rptTI$ctl03$teDet$teVal').send_keys('8')
+    #sleep(2)
+    driver.find_element(By.ID,'workflowRoute_ctl03_lb').click()
+    #sleep(2)
+    driver.get_screenshot_as_file(f'{today_date}.png')
+#***** Thursday 
+elif today_date == "Thursday":
+
+    #sleep(2)
+    driver.switch_to.frame('aframe')
+    driver.find_element(By.ID,'inbox_inboxoutboxGrid_ctl00_ctl10_hypGetDetails').click()
+    #sleep(2)
+    driver.find_element(By.ID,'pnlTimesheet')
+    driver.find_element(By.NAME,'rptTs$ctl01$ti$rptTI$ctl04$teDet$teVal').send_keys('8')
+    #sleep(2)
+    driver.find_element(By.ID,'workflowRoute_ctl03_lb').click()
+    #sleep(2)
+    driver.get_screenshot_as_file(f'{today_date}.png')
+#!friday 
+elif today_date == "Friday":
+
+    #sleep(2)
+    driver.switch_to.frame('aframe')
+    driver.find_element(By.ID,'inbox_inboxoutboxGrid_ctl00_ctl10_hypGetDetails').click() #inbox_inboxoutboxGrid_ctl00_ctl10_hypGetDetails
+    #sleep(2)
+    driver.find_element(By.ID,'pnlTimesheet')
+    driver.find_element(By.NAME,'rptTs$ctl01$ti$rptTI$ctl05$teDet$teVal').send_keys('8')
+    #sleep(2)
+    driver.find_element(By.ID,'workflowRoute_ctl07_lb').click()
+    #sleep(2)
+    driver.get_screenshot_as_file(f'{today_date}.png')
+print("done")
 
 ####################
 ###holidays and other working 
@@ -34,10 +141,9 @@ sleep(2)
 driver.find_element(By.XPATH,"(//div[@id='rptTs_ctl02_ti_rptTI_ctl00_pcParent_dd_parent'])[1]").click()
 sleep(2)
 driver.find_element(By.XPATH,'/html[1]/body[1]/form[1]/div[2]/table[1]/tbody[1]/tr[2]/td[1]/a[1]').click()
-#print(var)
 sleep(2)
-
 driver.find_element(By.XPATH,"/html[1]/body[1]/form[1]/table[1]/tbody[1]/tr[1]/td[1]/div[1]/div[2]/table[1]/tbody[1]/tr[1]/td[1]/table[1]/tbody[1]/tr[3]/td[2]/div[1]/div[1]").click()
+
 sleep(2)
 driver.find_element(By.XPATH,'/html[1]/body[1]/form[1]/div[2]/table[1]/tbody[1]/tr[2]/td[1]/a[1]').click()
 sleep(2)
